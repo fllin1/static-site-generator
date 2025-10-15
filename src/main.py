@@ -1,3 +1,5 @@
+import sys
+
 from pathlib import Path
 import shutil
 
@@ -25,8 +27,9 @@ def source_to_destination(input_dir: str, output_dir: str):
 
 
 def main():
-    source_to_destination("static", "public")
-    generate_pages_recursive("content", "template.html", "public")
+    basepath = sys.argv[1] if len(sys.argv) > 0 else "/"
+    source_to_destination("static", "docs")
+    generate_pages_recursive(basepath, "content", "template.html", "docs")
 
 
 if __name__ == "__main__":
